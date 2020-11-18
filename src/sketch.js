@@ -1,25 +1,42 @@
 let bug; // declarar objeto
+let cuadro;
 let bichos = [];
+let cuadros = [];
 
 function setup() {
   createCanvas(710, 400);
   // crear objeto
   bug = new Particula();
+  cuadro = new Cuadrado();
+
+  for(let i = 0 ; i < 50 ; i++){
+    cuadros.push(new Cuadrado());
+  }
 }
 
 function draw() {
   background(50, 89, 100);
+  
   bug.move(mouseX, mouseY);
   bug.display();
 
-  bichos.forEach(element => {
-    element.display();
-    element.move(mouseX, mouseY);
+  bichos.forEach(elbicho => {
+    elbicho.display();
+    elbicho.move(mouseX, mouseY);
   });
 
+  pintarLineas();
+ 
+  cuadros.forEach(element => {
+    element.display();
+    element.move();
+  });
 
+  
 
-  //console.log(bichos.length);
+}
+
+function pintarLineas() {
   for(let i = 0; i < bichos.length ; i++){
     let x1 = bichos[i].getX();
     let y1 = bichos[i].getY();  
